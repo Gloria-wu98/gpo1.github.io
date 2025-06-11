@@ -1,597 +1,439 @@
-{\rtf1\ansi\ansicpg950\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset136 PingFangTC-Regular;\f2\fnil\fcharset0 AppleColorEmoji;
-}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red71\green138\blue206;
-\red141\green213\blue254;\red203\green203\blue202;\red109\green109\blue109;\red194\green125\blue100;\red109\green115\blue120;
-\red212\green212\blue212;\red112\green192\blue130;\red167\green197\blue151;\red184\green113\blue248;\red245\green123\blue47;
-\red54\green192\blue160;}
-{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000\c0;\cssrgb\c34146\c61677\c84338;
-\cssrgb\c61545\c86704\c99884;\cssrgb\c83320\c83320\c83112;\cssrgb\c50307\c50306\c50181;\cssrgb\c80772\c56796\c46790;\cssrgb\c50336\c52696\c54531;
-\cssrgb\c86465\c86464\c86248;\cssrgb\c50437\c78684\c58115;\cssrgb\c71035\c80830\c65726;\cssrgb\c77746\c54642\c98035;\cssrgb\c97756\c56070\c23668;
-\cssrgb\c23989\c78963\c69075;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww12720\viewh7240\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloria的海報生成器</title>
+    <!-- 引入 Tailwind CSS 和 Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 整體頁面背景與字體設定 */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #fddde6 0%, #d4eaf7 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+        }
 
-\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
-<!DOCTYPE html>\
-\pard\pardeftab720\partightenfactor0
-\cf2 <html lang="zh-Hant">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Gloria
-\f1 \'aa\'ba\'ae\'fc\'b3\'f8\'a5\'cd\'a6\'a8\'be\'b9
-\f0 </title>\
-    <!-- 
-\f1 \'a4\'de\'a4\'4a
-\f0  Tailwind CSS 
-\f1 \'a9\'4d
-\f0  Google Fonts -->\
-    <script src="https://cdn.tailwindcss.com"></script>\
-    <link rel="preconnect" href="https://fonts.googleapis.com">\
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">\
-    <style>\
-        /* 
-\f1 \'be\'e3\'c5\'e9\'ad\'b6\'ad\'b1\'ad\'49\'b4\'ba\'bb\'50\'a6\'72\'c5\'e9\'b3\'5d\'a9\'77
-\f0  */\
-        body \{\
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;\
-            background: linear-gradient(135deg, #fddde6 0%, #d4eaf7 100%);\
-            display: flex;\
-            flex-direction: column;\
-            justify-content: flex-start;\
-            align-items: center;\
-            min-height: 100vh;\
-            margin: 0;\
-            padding: 2rem 1rem;\
-            box-sizing: border-box;\
-        \}\
-\
-        /* 
-\f1 \'a5\'cd\'a6\'a8\'be\'b9\'a5\'44\'ae\'65\'be\'b9
-\f0  */\
-        .generator-container \{\
-            background-color: rgba(255, 255, 255, 0.9);\
-            padding: 2rem;\
-            border-radius: 20px;\
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);\
-            margin-bottom: 2rem;\
-            width: 100%;\
-            max-width: 600px;\
-            backdrop-filter: blur(10px);\
-            border: 1px solid rgba(255, 255, 255, 0.2);\
-        \}\
-        \
-        /* 
-\f1 \'bc\'d0\'c3\'44\'bc\'cb\'a6\'a1
-\f0  (
-\f1 \'a4\'77\'a7\'f3\'b7\'73
-\f0 ) */\
-        .generator-title \{\
-            font-size: 2.8rem;\
-            font-weight: 700;\
-            color: #5e35b1; /* 
-\f1 \'b2\'60\'b5\'b5\'a6\'e2
-\f0  */\
-            text-align: center;\
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);\
-            background-color: #f3e5f5; /* 
-\f1 \'b2\'4c\'b5\'b5\'a6\'e2\'ad\'49\'b4\'ba
-\f0  */\
-            padding: 0.75rem 2rem;\
-            border-radius: 20px;\
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\
-            display: inline-block; /* 
-\f1 \'c5\'fd\'ad\'49\'b4\'ba\'a5\'5d\'bb\'71\'a4\'e5\'a6\'72
-\f0  */\
-            border: 1px solid rgba(94, 53, 177, 0.1);\
-        \}\
-\
-        /* 
-\f1 \'bf\'e9\'a4\'4a\'b0\'cf\'b6\'f4\'a5\'64\'a4\'f9
-\f0  */\
-        .input-card \{\
-            background-color: rgba(255, 255, 255, 0.8);\
-            padding: 1.5rem;\
-            margin-bottom: 1rem;\
-            border-radius: 15px;\
-            border: 1px solid #eee;\
-            transition: box-shadow 0.3s ease;\
-        \}\
-        .input-card:focus-within \{\
-             box-shadow: 0 0 15px rgba(216, 27, 96, 0.2);\
-        \}\
-\
-        .input-card label \{\
-            display: block;\
-            margin-bottom: 0.5rem;\
-            font-weight: 700;\
-            color: #555;\
-            font-size: 1rem;\
-        \}\
-\
-        .input-card input, .input-card select \{\
-            width: 100%;\
-            padding: 0.75rem;\
-            border: 1px solid #ccc;\
-            border-radius: 8px;\
-            font-size: 1rem;\
-            transition: border-color 0.3s ease;\
-        \}\
-        .input-card input:focus, .input-card select:focus \{\
-            outline: none;\
-            border-color: #d81b60;\
-        \}\
-        \
-        /* 
-\f1 \'a4\'e9\'b4\'c1\'bf\'ef\'be\'dc\'be\'b9\'bc\'cb\'a6\'a1
-\f0  */\
-        .date-picker-container \{\
-            display: flex;\
-            align-items: center;\
-            gap: 1rem;\
-        \}\
-        #date-input \{\
-            color: #333; /* 
-\f1 \'bd\'54\'ab\'4f\'bf\'ef\'a4\'a4\'a4\'e9\'b4\'c1\'ab\'e1\'a4\'e5\'a6\'72\'a5\'69\'a8\'a3
-\f0  */\
-        \}\
-        #date-display \{\
-            font-weight: bold;\
-            color: #d81b60;\
-        \}\
-        \
-        /* 
-\f1 \'c0\'c9\'ae\'d7\'a4\'57\'b6\'c7\'ab\'f6\'b6\'73
-\f0  */\
-        .upload-area \{\
-            display: flex;\
-            align-items: center;\
-            gap: 1rem;\
-        \}\
-        \
-        #lecturer-image-preview \{\
-            width: 100px;\
-            height: 133px;\
-            object-fit: cover;\
-            border-radius: 8px;\
-            border: 2px dashed #ccc;\
-            background-color: #f8f8f8;\
-        \}\
-\
-        /* 
-\f1 \'be\'de\'a7\'40\'ab\'f6\'b6\'73\'b3\'71\'a5\'ce\'bc\'cb\'a6\'a1
-\f0  */\
-        .action-button \{\
-            color: white;\
-            padding: 1rem 1.5rem;\
-            border: none;\
-            border-radius: 12px;\
-            cursor: pointer;\
-            font-size: 1.2rem;\
-            font-weight: 700;\
-            width: 100%;\
-            transition: transform 0.2s ease, box-shadow 0.2s ease;\
-            text-align: center;\
-        \}\
-\
-        /* 
-\f1 \'a5\'cd\'a6\'a8\'ab\'f6\'b6\'73
-\f0  */\
-        .generate-button \{\
-            background: linear-gradient(45deg, #d81b60, #f48fb1);\
-            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);\
-        \}\
-        .generate-button:hover \{ transform: translateY(-2px); box-shadow: 0 6px 20px rgba(216, 27, 96, 0.4); \}\
-        \
-        /* 
-\f1 \'a6\'43\'a6\'4c\'ab\'f6\'b6\'73
-\f0  */\
-        .print-button \{\
-            background: linear-gradient(45deg, #42a5f5, #90caf9);\
-            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);\
-        \}\
-        .print-button:hover \{ transform: translateY(-2px); box-shadow: 0 6px 20px rgba(66, 165, 245, 0.4); \}\
-\
-\
-        /* 
-\f1 \'ae\'fc\'b3\'f8\'b9\'77\'c4\'fd\'ae\'65\'be\'b9
-\f0  */\
-        #poster-preview-container \{\
-            margin-top: 1rem;\
-            border: 1px solid #DDD;\
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);\
-            border-radius: 15px;\
-            overflow: hidden;\
-            width: 100%;\
-            max-width: 500px;\
-            background-color: #fff;\
-            transition: aspect-ratio 0.4s ease, max-width 0.4s ease;\
-        \}\
-\
-        #poster-preview-iframe \{ width: 100%; height: 100%; border: none; \}\
-    </style>\
-</head>\
-<body>\
-    <div class="generator-container">\
-        <div class="w-full text-center mb-8">\
-            <h1 class="generator-title">Gloria
-\f1 \'aa\'ba\'ae\'fc\'b3\'f8\'a5\'cd\'a6\'a8\'be\'b9
-\f0 </h1>\
-        </div>\
-\
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">\
-            <div class="input-card"><label for="event-title">
-\f1 \'ac\'a1\'b0\'ca\'a5\'44\'c3\'44\'a1\'47
-\f0 </label><input type="text" id="event-title" placeholder="
-\f1 \'bd\'d0\'bf\'e9\'a4\'4a\'ac\'a1\'b0\'ca\'a5\'44\'c3\'44
-\f0 " value=""></div>\
-            <div class="input-card"><label for="speaker">
-\f1 \'c1\'bf\'ae\'76\'a1\'47
-\f0 </label><input type="text" id="speaker" placeholder="
-\f1 \'bd\'d0\'bf\'e9\'a4\'4a\'c1\'bf\'ae\'76\'a9\'6d\'a6\'57
-\f0 " value=""></div>\
-            <div class="input-card">\
-                <label for="date-input">
-\f1 \'a4\'e9\'b4\'c1\'a1\'47
-\f0 </label>\
-                <div class="date-picker-container">\
-                    <input type="date" id="date-input">\
-                    <span id="date-display"></span>\
-                </div>\
-            </div>\
-            <div class="input-card"><label for="time">
-\f1 \'ae\'c9\'b6\'a1\'a1\'47
-\f0 </label><input type="text" id="time" placeholder="
-\f1 \'bd\'d0\'bf\'e9\'a4\'4a\'ae\'c9\'b6\'a1
-\f0 " value=""></div>\
-        </div>\
-\
-        <div class="input-card"><label for="location">
-\f1 \'b9\'ea\'c5\'e9\'a9\'ce\'bd\'75\'a4\'57
-\f0 meet
-\f1 \'a1\'47
-\f0 </label><input type="text" id="location" placeholder="
-\f1 \'a6\'61\'c2\'49\'a9\'ce
-\f0 Meet
-\f1 \'ba\'f4\'a7\'7d
-\f0 " value=""></div>\
-        \
-        <div class="input-card">\
-            <label for="lecturer-image">
-\f1 \'c1\'bf\'ae\'76\'c0\'59\'b9\'b3\'a4\'57\'b6\'c7\'a1\'47
-\f0 </label>\
-            <div class="upload-area">\
-                <input type="file" id="lecturer-image" accept="image/*">\
-                <img id="lecturer-image-preview" src="https://placehold.co/300x400/EFEFEF/AAAAAA?text=
-\f1 \'b9\'77\'c4\'fd
-\f0 " alt="
-\f1 \'c1\'bf\'ae\'76\'c0\'59\'b9\'b3\'b9\'77\'c4\'fd
-\f0 ">\
-            </div>\
-        </div>\
-        \
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">\
-            <div class="input-card">\
-                <label for="avatar-ratio">
-\f1 \'c0\'59\'b9\'b3\'a4\'f1\'a8\'d2\'a1\'47
-\f0 </label>\
-                <select id="avatar-ratio">\
-                    <option value="portrait">
-\f1 \'aa\'bd\'a6\'a1
-\f0  (9:16)</option>\
-                    <option value="square">
-\f1 \'a4\'e8\'a7\'ce
-\f0  (1:1)</option>\
-                </select>\
-            </div>\
-             <div class="input-card">\
-                <label for="poster-size">
-\f1 \'ae\'fc\'b3\'f8\'a4\'d8\'a4\'6f\'a1\'47
-\f0 </label>\
-                <select id="poster-size">\
-                    <option value="9/16">
-\f1 \'aa\'bd\'a6\'a1
-\f0  (9:16)</option>\
-                    <option value="16/9">
-\f1 \'be\'ee\'a6\'a1
-\f0  (16:9)</option>\
-                </select>\
-            </div>\
-        </div>\
-\
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">\
-            <div class="input-card">\
-                <label for="style">
-\f1 \'c0\'59\'b9\'b3\'ad\'b7\'ae\'e6\'a1\'47
-\f0 </label>\
-                <select id="style">\
-                    <option value="realistic">
-\f1 \'b5\'4c\'c2\'6f\'c3\'e8
-\f0  (
-\f1 \'bc\'67\'b9\'ea
-\f0 )</option>\
-                    <option value="cartoon">
-\f1 \'ba\'a9\'b5\'65\'ad\'b7\'ae\'e6
-\f0 </option>\
-                    <option value="illustration">
-\f1 \'b4\'a1\'b5\'65\'ad\'b7\'ae\'e6
-\f0 </option>\
-                    <option value="ghibli">
-\f1 \'ae\'63\'b1\'54\'c2\'40\'b0\'ca\'ba\'a9
-\f0 </option>\
-                    <option value="3d-doll">3D
-\f1 \'ab\'bd\'ab\'bd
-\f0 </option>\
-                    <option value="vangogh">
-\f1 \'b1\'eb\'a8\'a6\'a6\'57\'b5\'65
-\f0 </option>\
-                </select>\
-            </div>\
-            <div class="input-card">\
-                <label for="poster-background">
-\f1 \'ae\'fc\'b3\'f8\'ad\'49\'b4\'ba\'a1\'47
-\f0 </label>\
-                <select id="poster-background">\
-                    <option value="default">
-\f1 \'b9\'77\'b3\'5d
-\f0  (
-\f1 \'a5\'d5\'a9\'b3
-\f0 )</option>\
-                    <option value="miyazaki">
-\f1 \'ae\'63\'b1\'54\'c2\'40\'b0\'ca\'ba\'a9\'ad\'b7\'ae\'e6
-\f0 </option>\
-                    <option value="nile">
-\f1 \'a5\'a7\'c3\'b9\'aa\'65\'a4\'6b\'a8\'e0\'ad\'b7\'ae\'e6
-\f0 </option>\
-                    <option value="solid">
-\f1 \'c0\'48\'be\'f7\'b3\'e6\'a6\'e2
-\f0 </option>\
-                    <option value="gradient">
-\f1 \'c0\'48\'be\'f7\'ba\'a5\'bc\'68
-\f0 </option>\
-                    <option value="famous_painting">
-\f1 \'a5\'40\'ac\'c9\'a6\'57\'b5\'65\'ad\'b7\'ae\'e6
-\f0 </option>\
-                </select>\
-            </div>\
-        </div>\
-\
-\
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">\
-            <div class="input-card !p-0"><button class="action-button generate-button" onclick="generatePoster()">
-\f2 \uc0\u10024 
-\f0  
-\f1 \'a5\'cd\'a6\'a8\'ae\'fc\'b3\'f8
-\f0  
-\f2 \uc0\u10024 
-\f0 </button></div>\
-            <div class="input-card !p-0"><button class="action-button print-button" onclick="printPoster()">
-\f2 \uc0\u55357 \u56744 \u65039 
-\f0  
-\f1 \'a6\'43\'a6\'4c\'ae\'fc\'b3\'f8
-\f0 </button></div>\
-        </div>\
-    </div>\
-\
-    <div id="poster-preview-container">\
-        <iframe id="poster-preview-iframe" title="
-\f1 \'ae\'fc\'b3\'f8\'b9\'77\'c4\'fd
-\f0 "></iframe>\
-    </div>\
-\
-    <script>\
-        // --- Event Listeners ---\
-        window.onload = function() \{\
-            updatePosterSize(); // Set initial poster size\
-            generatePoster();\
-        \};\
-    \
-        document.getElementById('lecturer-image').addEventListener('change', function() \{\
-            const file = this.files && this.files.length > 0 ? this.files[0] : null;\
-            if (file) \{\
-                const reader = new FileReader();\
-                reader.onload = function(e) \{\
-                    document.getElementById('lecturer-image-preview').src = e.target.result;\
-                \}\
-                reader.readAsDataURL(file);\
-            \}\
-        \});\
-        \
-        document.getElementById('date-input').addEventListener('change', updateDateDisplay);\
-        document.getElementById('poster-size').addEventListener('change', updatePosterSize);\
-\
-        // --- Core Functions ---\
-        function updateDateDisplay() \{\
-            const dateInput = document.getElementById('date-input');\
-            const dateDisplay = document.getElementById('date-display');\
-            if (dateInput.value) \{\
-                const dateValue = dateInput.value;\
-                const [year, month, day] = dateValue.split('-').map(Number);\
-                const date = new Date(Date.UTC(year, month - 1, day));\
-                \
-                const options = \{ year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: 'UTC' \};\
-                dateDisplay.textContent = new Intl.DateTimeFormat('zh-Hant-TW', options).format(date);\
-            \} else \{\
-                dateDisplay.textContent = '';\
-            \}\
-        \}\
-        \
-        function updatePosterSize() \{\
-            const size = document.getElementById('poster-size').value;\
-            const container = document.getElementById('poster-preview-container');\
-            container.style.aspectRatio = size;\
-            \
-            if (size === '16/9') \{\
-                container.style.maxWidth = '800px';\
-            \} else \{\
-                container.style.maxWidth = '500px';\
-            \}\
-        \}\
-\
-        function generatePoster() \{\
-            const data = \{\
-                eventTitle: document.getElementById('event-title').value || '
-\f1 \'bd\'d0\'bf\'e9\'a4\'4a\'a5\'44\'c3\'44
-\f0 ',\
-                speaker: document.getElementById('speaker').value || '
-\f1 \'ab\'dd\'a9\'77\'c1\'bf\'ae\'76
-\f0 ',\
-                date: document.getElementById('date-display').textContent || '
-\f1 \'ab\'dd\'a9\'77\'a4\'e9\'b4\'c1
-\f0 ',\
-                time: document.getElementById('time').value || '
-\f1 \'ab\'dd\'a9\'77\'ae\'c9\'b6\'a1
-\f0 ',\
-                location: document.getElementById('location').value || '
-\f1 \'ab\'dd\'a9\'77\'a6\'61\'c2\'49
-\f0 ',\
-                lecturerImage: document.getElementById('lecturer-image-preview').src,\
-                style: document.getElementById('style').value,\
-                avatarRatio: document.getElementById('avatar-ratio').value,\
-                posterSize: document.getElementById('poster-size').value,\
-                background: document.getElementById('poster-background').value\
-            \};\
-\
-            const posterHTML = getPosterHTML(data);\
-            const iframe = document.getElementById('poster-preview-iframe');\
-            iframe.srcdoc = posterHTML;\
-        \}\
-\
-        function printPoster() \{\
-            const iframe = document.getElementById('poster-preview-iframe');\
-            if (iframe && iframe.contentWindow) \{\
-                iframe.contentWindow.focus();\
-                iframe.contentWindow.print();\
-            \} else \{\
-                alert("
-\f1 \'b5\'4c\'aa\'6b\'a6\'43\'a6\'4c\'a1\'41\'ae\'fc\'b3\'f8\'b9\'77\'c4\'fd\'a9\'7c\'a5\'bc\'b7\'c7\'b3\'c6\'a6\'6e\'a1\'43
-\f0 ");\
-            \}\
-        \}\
-        \
-        // --- Helper functions for styles ---\
-\
-        function getAvatarFilter(style) \{\
-            switch(style) \{\
-                case 'cartoon': return 'filter: grayscale(1) brightness(1.2) contrast(1.5);';\
-                case 'illustration': return 'filter: sepia(0.5) saturate(1.4) brightness(1.1);';\
-                case 'ghibli': return 'filter: saturate(1.2) contrast(1.1) brightness(1.1);';\
-                case '3d-doll': return 'filter: saturate(1.5) brightness(1.1);';\
-                case 'vangogh': return 'filter: contrast(1.4) saturate(1.8) sepia(0.3) hue-rotate(-10deg);';\
-                case 'realistic':\
-                default: return 'filter: none;';\
-            \}\
-        \}\
-        \
-        function getBackgroundStyle(background) \{\
-            const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');\
-            const getTextColor = (bgColor) => \{\
-                const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;\
-                const r = parseInt(color.substring(0, 2), 16);\
-                const g = parseInt(color.substring(2, 4), 16);\
-                const b = parseInt(color.substring(4, 6), 16);\
-                return (((r * 299) + (g * 587) + (b * 114)) / 1000) > 128 ? '#334155' : '#f8fafc';\
-            \};\
-\
-            switch(background) \{\
-                case 'miyazaki': return \{ style: 'background: linear-gradient(to bottom, #a7d9ed, #f5f0e1);', textColor: '#3d5a80' \};\
-                case 'nile': return \{ style: 'background: linear-gradient(to bottom, #3A8B9C, #E0C097, #6B2A2D);', textColor: '#FAD74B' \};\
-                case 'solid': \
-                    const solidBg = randomColor();\
-                    return \{ style: `background-color: $\{solidBg\};`, textColor: getTextColor(solidBg) \};\
-                case 'gradient':\
-                    const gradBg1 = randomColor();\
-                    const gradBg2 = randomColor();\
-                    return \{ style: `background: linear-gradient(135deg, $\{gradBg1\}, $\{gradBg2\});`, textColor: getTextColor(gradBg1) \}; // Check against first color\
-                case 'famous_painting':\
-                    const paintings = [\
-                        \{ style: 'background: linear-gradient(to bottom, #0b1a3a, #f6d17a);', textColor: '#ffffff' \}, // Starry Night\
-                        \{ style: 'background: linear-gradient(to bottom right, #a2d2ff, #bde0fe, #fbcfe8);', textColor: '#334155' \}, // Water Lilies\
-                        \{ style: 'background: linear-gradient(to top, #e67e22, #f1c40f, #2980b9);', textColor: '#000000' \} // The Scream\
-                    ];\
-                    return paintings[Math.floor(Math.random() * paintings.length)];\
-                case 'default':\
-                default: return \{ style: 'background-color: #ffffff;', textColor: '#334155' \};\
-            \}\
-        \}\
-\
-\
-        // --- HTML Template Function ---\
-\
-        function getPosterHTML(data) \{\
-            const isHorizontal = data.posterSize === '16/9';\
-            const avatarFilter = getAvatarFilter(data.style);\
-            const \{ style: backgroundStyle, textColor \} = getBackgroundStyle(data.background);\
-\
-            const layoutClass = isHorizontal \
-                ? 'flex-row items-center justify-center gap-8' \
-                : 'flex-col items-center justify-around gap-4';\
-\
-            const imageContainerClass = isHorizontal ? 'w-5/12' : 'w-2/3';\
-            const textContainerClass = isHorizontal ? 'w-6/12 text-left' : 'w-full text-center';\
-            \
-            const imageSizeClass = data.avatarRatio === 'square' ? 'aspect-square' : 'aspect-[9/16]';\
-            \
-            const titleSizeClass = isHorizontal ? 'text-6xl' : 'text-5xl';\
-            const speakerSizeClass = isHorizontal ? 'text-4xl' : 'text-3xl';\
-\
-\
-            return `\
-                <!DOCTYPE html>\
-                <html lang="zh-Hant">\
-                <head>\
-                    <meta charset="UTF-8">\
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-                    <title>
-\f1 \'ae\'fc\'b3\'f8
-\f0 </title>\
-                    <script src="https://cdn.tailwindcss.com"><\\/script>\
-                    <style>\
-                        body \{ \
-                            font-family:'Inter', 'Noto Sans TC', sans-serif; \
-                            -webkit-print-color-adjust: exact; \
-                            height: 100vh;\
-                            margin: 0;\
-                            color: $\{textColor\};\
-                            $\{backgroundStyle\}\
-                        \}\
-                    </style>\
-                </head>\
-                <body class="flex items-center justify-center">\
-                    <div class="w-full h-full flex $\{layoutClass\} p-8">\
-                        \
-                        <div class="$\{imageContainerClass\}">\
-                            <img src="$\{data.lecturerImage\}" alt="
-\f1 \'c1\'bf\'ae\'76\'b7\'d3\'a4\'f9
-\f0 " class="w-full $\{imageSizeClass\} object-cover rounded-xl shadow-lg" style="$\{avatarFilter\}">\
-                        </div>\
-\
-                        <div class="$\{textContainerClass\} flex flex-col justify-center gap-6">\
-                            <h1 class="$\{titleSizeClass\} font-bold leading-tight" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.2);">$\{data.eventTitle\}</h1>\
-                            \
-                            <div class="mt-2">\
-                                <p class="text-xl opacity-80">
-\f1 \'a5\'44\'c1\'bf\'a4\'48
-\f0 </p>\
-                                <p class="$\{speakerSizeClass\} font-bold" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">$\{data.speaker\}</p>\
-                            </div>\
-                            \
-                            <div class="text-xl bg-black bg-opacity-10 p-4 rounded-lg backdrop-blur-sm">\
-                                <p>$\{data.date\}</p>\
-                                <p>$\{data.time\}</p>\
-                                <p class="break-words mt-2 font-semibold">$\{data.location\}</p>\
-                            </div>\
-                        </div>\
-\
-                    </div>\
-                </body>\
-                </html>`;\
-        \}\
-    </script>\
-</body>\
-</html>\
-\
-}
+        /* 生成器主容器 */
+        .generator-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 標題樣式 (已更新) */
+        .generator-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #5e35b1; /* 深紫色 */
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            background-color: #f3e5f5; /* 淺紫色背景 */
+            padding: 0.75rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* 讓背景包裹文字 */
+            border: 1px solid rgba(94, 53, 177, 0.1);
+        }
+
+        /* 輸入區塊卡片 */
+        .input-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            transition: box-shadow 0.3s ease;
+        }
+        .input-card:focus-within {
+             box-shadow: 0 0 15px rgba(216, 27, 96, 0.2);
+        }
+
+        .input-card label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .input-card input, .input-card select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .input-card input:focus, .input-card select:focus {
+            outline: none;
+            border-color: #d81b60;
+        }
+        
+        /* 日期選擇器樣式 */
+        .date-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        #date-input {
+            color: #333; /* 確保選中日期後文字可見 */
+        }
+        #date-display {
+            font-weight: bold;
+            color: #d81b60;
+        }
+        
+        /* 檔案上傳按鈕 */
+        .upload-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        #lecturer-image-preview {
+            width: 100px;
+            height: 133px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px dashed #ccc;
+            background-color: #f8f8f8;
+        }
+
+        /* 操作按鈕通用樣式 */
+        .action-button {
+            color: white;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 700;
+            width: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center;
+        }
+
+        /* 生成按鈕 */
+        .generate-button {
+            background: linear-gradient(45deg, #d81b60, #f48fb1);
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+        }
+        .generate-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(216, 27, 96, 0.4); }
+        
+        /* 列印按鈕 */
+        .print-button {
+            background: linear-gradient(45deg, #42a5f5, #90caf9);
+            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+        }
+        .print-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(66, 165, 245, 0.4); }
+
+
+        /* 海報預覽容器 */
+        #poster-preview-container {
+            margin-top: 1rem;
+            border: 1px solid #DDD;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            transition: aspect-ratio 0.4s ease, max-width 0.4s ease;
+        }
+
+        #poster-preview-iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <div class="generator-container">
+        <div class="w-full text-center mb-8">
+            <h1 class="generator-title">Gloria的海報生成器</h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="input-card"><label for="event-title">活動主題：</label><input type="text" id="event-title" placeholder="請輸入活動主題" value=""></div>
+            <div class="input-card"><label for="speaker">講師：</label><input type="text" id="speaker" placeholder="請輸入講師姓名" value=""></div>
+            <div class="input-card">
+                <label for="date-input">日期：</label>
+                <div class="date-picker-container">
+                    <input type="date" id="date-input">
+                    <span id="date-display"></span>
+                </div>
+            </div>
+            <div class="input-card"><label for="time">時間：</label><input type="text" id="time" placeholder="請輸入時間" value=""></div>
+        </div>
+
+        <div class="input-card"><label for="location">實體或線上meet：</label><input type="text" id="location" placeholder="地點或Meet網址" value=""></div>
+        
+        <div class="input-card">
+            <label for="lecturer-image">講師頭像上傳：</label>
+            <div class="upload-area">
+                <input type="file" id="lecturer-image" accept="image/*">
+                <img id="lecturer-image-preview" src="https://placehold.co/300x400/EFEFEF/AAAAAA?text=預覽" alt="講師頭像預覽">
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="input-card">
+                <label for="avatar-ratio">頭像比例：</label>
+                <select id="avatar-ratio">
+                    <option value="portrait">直式 (9:16)</option>
+                    <option value="square">方形 (1:1)</option>
+                </select>
+            </div>
+             <div class="input-card">
+                <label for="poster-size">海報尺寸：</label>
+                <select id="poster-size">
+                    <option value="9/16">直式 (9:16)</option>
+                    <option value="16/9">橫式 (16:9)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="input-card">
+                <label for="style">頭像風格：</label>
+                <select id="style">
+                    <option value="realistic">無濾鏡 (寫實)</option>
+                    <option value="cartoon">漫畫風格</option>
+                    <option value="illustration">插畫風格</option>
+                    <option value="ghibli">宮崎駿動漫</option>
+                    <option value="3d-doll">3D娃娃</option>
+                    <option value="vangogh">梵谷名畫</option>
+                </select>
+            </div>
+            <div class="input-card">
+                <label for="poster-background">海報背景：</label>
+                <select id="poster-background">
+                    <option value="default">預設 (白底)</option>
+                    <option value="miyazaki">宮崎駿動漫風格</option>
+                    <option value="nile">尼羅河女兒風格</option>
+                    <option value="solid">隨機單色</option>
+                    <option value="gradient">隨機漸層</option>
+                    <option value="famous_painting">世界名畫風格</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="input-card !p-0"><button class="action-button generate-button" onclick="generatePoster()">✨ 生成海報 ✨</button></div>
+            <div class="input-card !p-0"><button class="action-button print-button" onclick="printPoster()">🖨️ 列印海報</button></div>
+        </div>
+    </div>
+
+    <div id="poster-preview-container">
+        <iframe id="poster-preview-iframe" title="海報預覽"></iframe>
+    </div>
+
+    <script>
+        // --- Event Listeners ---
+        window.onload = function() {
+            updatePosterSize(); // Set initial poster size
+            generatePoster();
+        };
+    
+        document.getElementById('lecturer-image').addEventListener('change', function() {
+            const file = this.files && this.files.length > 0 ? this.files[0] : null;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('lecturer-image-preview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        document.getElementById('date-input').addEventListener('change', updateDateDisplay);
+        document.getElementById('poster-size').addEventListener('change', updatePosterSize);
+
+        // --- Core Functions ---
+        function updateDateDisplay() {
+            const dateInput = document.getElementById('date-input');
+            const dateDisplay = document.getElementById('date-display');
+            if (dateInput.value) {
+                const dateValue = dateInput.value;
+                const [year, month, day] = dateValue.split('-').map(Number);
+                const date = new Date(Date.UTC(year, month - 1, day));
+                
+                const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: 'UTC' };
+                dateDisplay.textContent = new Intl.DateTimeFormat('zh-Hant-TW', options).format(date);
+            } else {
+                dateDisplay.textContent = '';
+            }
+        }
+        
+        function updatePosterSize() {
+            const size = document.getElementById('poster-size').value;
+            const container = document.getElementById('poster-preview-container');
+            container.style.aspectRatio = size;
+            
+            if (size === '16/9') {
+                container.style.maxWidth = '800px';
+            } else {
+                container.style.maxWidth = '500px';
+            }
+        }
+
+        function generatePoster() {
+            const data = {
+                eventTitle: document.getElementById('event-title').value || '請輸入主題',
+                speaker: document.getElementById('speaker').value || '待定講師',
+                date: document.getElementById('date-display').textContent || '待定日期',
+                time: document.getElementById('time').value || '待定時間',
+                location: document.getElementById('location').value || '待定地點',
+                lecturerImage: document.getElementById('lecturer-image-preview').src,
+                style: document.getElementById('style').value,
+                avatarRatio: document.getElementById('avatar-ratio').value,
+                posterSize: document.getElementById('poster-size').value,
+                background: document.getElementById('poster-background').value
+            };
+
+            const posterHTML = getPosterHTML(data);
+            const iframe = document.getElementById('poster-preview-iframe');
+            iframe.srcdoc = posterHTML;
+        }
+
+        function printPoster() {
+            const iframe = document.getElementById('poster-preview-iframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.focus();
+                iframe.contentWindow.print();
+            } else {
+                alert("無法列印，海報預覽尚未準備好。");
+            }
+        }
+        
+        // --- Helper functions for styles ---
+
+        function getAvatarFilter(style) {
+            switch(style) {
+                case 'cartoon': return 'filter: grayscale(1) brightness(1.2) contrast(1.5);';
+                case 'illustration': return 'filter: sepia(0.5) saturate(1.4) brightness(1.1);';
+                case 'ghibli': return 'filter: saturate(1.2) contrast(1.1) brightness(1.1);';
+                case '3d-doll': return 'filter: saturate(1.5) brightness(1.1);';
+                case 'vangogh': return 'filter: contrast(1.4) saturate(1.8) sepia(0.3) hue-rotate(-10deg);';
+                case 'realistic':
+                default: return 'filter: none;';
+            }
+        }
+        
+        function getBackgroundStyle(background) {
+            const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            const getTextColor = (bgColor) => {
+                const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+                const r = parseInt(color.substring(0, 2), 16);
+                const g = parseInt(color.substring(2, 4), 16);
+                const b = parseInt(color.substring(4, 6), 16);
+                return (((r * 299) + (g * 587) + (b * 114)) / 1000) > 128 ? '#334155' : '#f8fafc';
+            };
+
+            switch(background) {
+                case 'miyazaki': return { style: 'background: linear-gradient(to bottom, #a7d9ed, #f5f0e1);', textColor: '#3d5a80' };
+                case 'nile': return { style: 'background: linear-gradient(to bottom, #3A8B9C, #E0C097, #6B2A2D);', textColor: '#FAD74B' };
+                case 'solid': 
+                    const solidBg = randomColor();
+                    return { style: `background-color: ${solidBg};`, textColor: getTextColor(solidBg) };
+                case 'gradient':
+                    const gradBg1 = randomColor();
+                    const gradBg2 = randomColor();
+                    return { style: `background: linear-gradient(135deg, ${gradBg1}, ${gradBg2});`, textColor: getTextColor(gradBg1) }; // Check against first color
+                case 'famous_painting':
+                    const paintings = [
+                        { style: 'background: linear-gradient(to bottom, #0b1a3a, #f6d17a);', textColor: '#ffffff' }, // Starry Night
+                        { style: 'background: linear-gradient(to bottom right, #a2d2ff, #bde0fe, #fbcfe8);', textColor: '#334155' }, // Water Lilies
+                        { style: 'background: linear-gradient(to top, #e67e22, #f1c40f, #2980b9);', textColor: '#000000' } // The Scream
+                    ];
+                    return paintings[Math.floor(Math.random() * paintings.length)];
+                case 'default':
+                default: return { style: 'background-color: #ffffff;', textColor: '#334155' };
+            }
+        }
+
+
+        // --- HTML Template Function ---
+
+        function getPosterHTML(data) {
+            const isHorizontal = data.posterSize === '16/9';
+            const avatarFilter = getAvatarFilter(data.style);
+            const { style: backgroundStyle, textColor } = getBackgroundStyle(data.background);
+
+            const layoutClass = isHorizontal 
+                ? 'flex-row items-center justify-center gap-8' 
+                : 'flex-col items-center justify-around gap-4';
+
+            const imageContainerClass = isHorizontal ? 'w-5/12' : 'w-2/3';
+            const textContainerClass = isHorizontal ? 'w-6/12 text-left' : 'w-full text-center';
+            
+            const imageSizeClass = data.avatarRatio === 'square' ? 'aspect-square' : 'aspect-[9/16]';
+            
+            const titleSizeClass = isHorizontal ? 'text-6xl' : 'text-5xl';
+            const speakerSizeClass = isHorizontal ? 'text-4xl' : 'text-3xl';
+
+
+            return `
+                <!DOCTYPE html>
+                <html lang="zh-Hant">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>海報</title>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <style>
+                        body { 
+                            font-family:'Inter', 'Noto Sans TC', sans-serif; 
+                            -webkit-print-color-adjust: exact; 
+                            height: 100vh;
+                            margin: 0;
+                            color: ${textColor};
+                            ${backgroundStyle}
+                        }
+                    </style>
+                </head>
+                <body class="flex items-center justify-center">
+                    <div class="w-full h-full flex ${layoutClass} p-8">
+                        
+                        <div class="${imageContainerClass}">
+                            <img src="${data.lecturerImage}" alt="講師照片" class="w-full ${imageSizeClass} object-cover rounded-xl shadow-lg" style="${avatarFilter}">
+                        </div>
+
+                        <div class="${textContainerClass} flex flex-col justify-center gap-6">
+                            <h1 class="${titleSizeClass} font-bold leading-tight" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.2);">${data.eventTitle}</h1>
+                            
+                            <div class="mt-2">
+                                <p class="text-xl opacity-80">主講人</p>
+                                <p class="${speakerSizeClass} font-bold" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">${data.speaker}</p>
+                            </div>
+                            
+                            <div class="text-xl bg-black bg-opacity-10 p-4 rounded-lg backdrop-blur-sm">
+                                <p>${data.date}</p>
+                                <p>${data.time}</p>
+                                <p class="break-words mt-2 font-semibold">${data.location}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </body>
+                </html>`;
+        }
+    </script>
+</body>
+</html>
+
